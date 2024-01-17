@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "661123620541",
+    "project_id": "fitnessassistant-3bddc",
+    "storage_bucket": "fitnessassistant-3bddc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661123620541:android:c6ca7c5a75acaf9ee721d4",
+        "android_client_info": {
+          "package_name": "IdoMizrahi.fitnessassistant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbxxem6idnYTsLjutYd8Sab40wiSJz9Ww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
