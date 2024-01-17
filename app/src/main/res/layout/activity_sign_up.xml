@@ -33,27 +33,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <EditText
-        android:id="@+id/editTextLastName"
-        android:layout_width="387dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="8dp"
-        android:hint="Last Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="385dp"
         android:layout_height="55dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -67,48 +58,97 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <!-- Additional Fields -->
-    <EditText
-        android:id="@+id/editTextBirthDate"
-        android:layout_width="387dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="16dp"
+
+    <TextView
+        android:id="@+id/textViewBirthDate"
+        android:layout_width="376dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="12dp"
         android:hint="Birth Date (YYYY-MM-DD)"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
+    <ImageView
+        android:id="@+id/imageViewDatePicker"
+        android:layout_width="72dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+    <!-- Goal Spinner -->
+
     <EditText
         android:id="@+id/editTextHeight"
-        android:layout_width="388dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="385dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="8dp"
         android:hint="Height (in cm)"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBirthDate" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBirthDate" />
 
     <EditText
         android:id="@+id/editTextWeight"
         android:layout_width="383dp"
         android:layout_height="49dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="4dp"
         android:hint="Weight (in kg)"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextHeight" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupGender"
+        android:layout_width="393dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextWeight">
+
+        <RadioButton
+            android:id="@+id/radioButtonMale"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFemale"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:text="Female" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinnerGoal"
+        android:layout_width="350dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupGender" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="172dp"
         android:text="Sign Up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.656"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextWeight" />
 

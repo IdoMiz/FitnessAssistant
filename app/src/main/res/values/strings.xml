@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FitnessAssistant</string>
+
+    <array name="goal_options">
+        <item>Maintain Weight</item>
+        <item>Gain Weight</item>
+        <item>Lose Weight</item>
+    </array>
 </resources>

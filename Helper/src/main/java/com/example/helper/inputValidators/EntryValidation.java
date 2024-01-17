@@ -1,4 +1,4 @@
-package co.il.shivhit.helper.inputValidators;
+package com.example.helper.inputValidators;
 
 public interface EntryValidation {
     void    setValidation();

@@ -15,25 +15,48 @@ public class User extends BaseEntity {
     private String email;
     private GoalEnum goal;
     private GenderEnum gender;
+    private String password;
 
-    // Constructor including the idFs from the BaseEntity
-    public User(String idFs, String name, String birthDate, String height, String weight,
-                String email, double goal, double gender) {
+    public User(String idFs, String name, String email, String password, long birthDate,
+                double height, double weight, GenderEnum gender, GoalEnum goal) {
         super(idFs);
         this.name = name;
+        this.email = email;
+        this.password = password;
         this.birthDate = birthDate;
         this.height = height;
         this.weight = weight;
         this.daysInApp = 1;
         this.history = new ArrayList<>();
-        this.email = email;
-        this.goal = goal;
         this.gender = gender;
+        this.goal = goal;
+    }
+    public User(String idFs, String name, String email, String password, long birthDate,
+                double height, double weight, GenderEnum gender) {
+        super(idFs);
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.height = height;
+        this.weight = weight;
+        this.daysInApp = 1;
+        this.history = new ArrayList<>();
+        this.gender = gender;
+
     }
 
     // Getter and Setter methods
     public String getName() {
         return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setName(String name) {
@@ -118,6 +141,7 @@ public class User extends BaseEntity {
                 Objects.equals(history, user.history) &&
                 Objects.equals(email, user.email) &&
                 goal == user.goal &&
-                gender == user.gender;
+                gender == user.gender&&
+                Objects.equals(password, user.password);
     }
 }
