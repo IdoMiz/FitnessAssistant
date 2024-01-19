@@ -29,6 +29,7 @@ public class UserViewModel extends ViewModel {
     }
 
 
+
     public void add(User user) {  // Change parameter type to User
         userRepository.add(user)
                 .addOnSuccessListener(aBoolean -> {

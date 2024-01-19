@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ import com.example.helper.inputValidators.Validator;
 import com.example.model.GenderEnum;
 import com.example.model.GoalEnum;
 import com.example.model.User;
+import com.example.viewmodel.GenericViewModelFactory;
 import com.example.viewmodel.UserViewModel;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -68,7 +70,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void initializeViews() {
         // Initialize ViewModel
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        GenericViewModelFactory<UserViewModel> factory = new GenericViewModelFactory<>(getApplication(), UserViewModel::new);
+        userViewModel = new ViewModelProvider(this, factory).get(UserViewModel.class);
 
         // Find views
         firstNameEditText = findViewById(R.id.editTextFirstName);
@@ -81,6 +84,11 @@ public class SignUpActivity extends AppCompatActivity {
         datePicker = findViewById(R.id.imageViewDatePicker);
         radioGroupGender = findViewById(R.id.radioGroupGender);
         spinnerGoal = findViewById(R.id.spinnerGoal);
+
+        setupGoalSpinner();
+        setupGenderRadioGroup();
+        setRules();
+
 
         setListeners();
     }
@@ -146,19 +154,34 @@ public class SignUpActivity extends AppCompatActivity {
                 signUp();
             }
         });
+
+        spinnerGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Handle the selection if needed
+                String selectedGoal = parentView.getItemAtPosition(position).toString();
+                GoalEnum goal = GoalEnum.fromString(selectedGoal);
+                // Do something with the selected goal if needed
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here if needed
+            }
+        });
     }
 
-    private boolean validateInputs() {
-
+    private void setRules(){
         Validator.add(new TextRule(firstNameEditText, RuleOperation.TEXT, "Invalid First Name", 2, 20, false, true, null));
         Validator.add(new EmailRule(emailEditText, RuleOperation.REQUIRED, "Invalid Email"));
-        Validator.add(new PasswordRule(passwordEditText, RuleOperation.PASSWORD, "Invalid Password", 8, 15));
+        Validator.add(new PasswordRule(passwordEditText, RuleOperation.PASSWORD, "Invalid Password", 8, 18));
         Validator.add(new TextRule(birthDateEditText, RuleOperation.DATE, "Invalid Birth Date"));
         Validator.add(new NumberRule(heightEditText, RuleOperation.NUMBER, "Invalid Height", 50, 300));
-        Validator.add(new NumberRule(weightEditText, RuleOperation.NUMBER, "Invalid Weight", 30, 300));
-
-        // Perform validation
-        return Validator.validate();
+        Validator.add(new NumberRule(weightEditText, RuleOperation.NUMBER, "Invalid Weight", 2, 300));
+    }
+    private boolean validateInputs() {
+//        return Validator.validate();
+        return true;
     }
 
     private void signUp() {
@@ -185,12 +208,15 @@ public class SignUpActivity extends AppCompatActivity {
             GoalEnum goal = GoalEnum.fromString(selectedGoal);
 
             // Create a User object
-            User user = new User(null, firstName, email, password, birthDate, height, weight, gender);
+            User user = new User(null, firstName, email, password, birthDate, height, weight, gender, goal);
             // Save the user using the ViewModel
             userViewModel.add(user);
 
             // Provide feedback to the user
             Toast.makeText(SignUpActivity.this, "User signed up successfully!", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
     }
 
