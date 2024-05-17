@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#E5E8E5"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/editProfileTV"
+        android:layout_width="347dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="372dp"
+        android:layout_marginEnd="32dp"
+        android:text="Edit Profile"
+        android:fontFamily="@font/esteban"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="24sp"         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/logOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="40dp"
+        android:text="Log Out"
+        android:backgroundTint="#4F6F52"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/userImage"
+        android:layout_width="164dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="100dp"
+        android:src="@drawable/profile_photo_example"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.72"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userNameTV"
+        android:layout_width="163dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="140dp"
+        android:hint="User Name: "
+        android:textAlignment="center"
+        android:fontFamily="@font/esteban"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="24sp"         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/progressTV"
+        android:layout_width="347dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="284dp"
+        android:layout_marginEnd="32dp"
+        android:text="Progress"
+        android:fontFamily="@font/esteban"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="24sp"         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/daysInAppTV"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="85dp"
+        android:text="1"
+        android:textAlignment="center"
+        android:fontFamily="@font/esteban"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="24sp"         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:layout_marginTop="85dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:text="TextView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="80dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="135dp"
+        android:text="Days"
+        android:fontFamily="@font/esteban"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="24sp"         android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeScreenFragment"
+        android:title="Home"
+        android:icon="@drawable/home" />
+
+    <item
+        android:id="@+id/logFoodFragment"
+        android:title="Log Food"
+        android:icon="@drawable/log_food" />
+
+    <item
+        android:id="@+id/foodPlanFragment"
+        android:icon="@drawable/baseline_menu_book_24"
+        android:title="Plan" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="Settings"
+        android:icon="@drawable/settings_image" />
+
+
+</menu>

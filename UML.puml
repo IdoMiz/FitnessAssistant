@@ -1,0 +1,407 @@
+@startuml
+class MealPlanResponse {
+- List<Meal> meals
+- Nutrients nutrients
++ List<Meal> getMeals()
++ Nutrients getNutrients()
+}
+
+
+class Ingredients {
+}
+class Nutrients {
+- Double carbs
+- Double calories
+- Double fat
+- Double fiber
+- Double protein
++ <<Create>> Nutrients(Double,Double,Double,Double,Double)
++ <<Create>> Nutrients()
++ Double getCarbs()
++ void setCarbs(Double)
++ Double getCalories()
++ void setCalories(Double)
++ Double getFat()
++ void setFat(Double)
++ Double getFiber()
++ void setFiber(Double)
++ Double getProtein()
++ void setProtein(Double)
+}
+
+
+class BaseEntity {
+# String idFs
++ <<Create>> BaseEntity()
++ String getIdFs()
++ void setIdFs(String)
++ boolean equals(Object)
+}
+
+
+interface FoodApiService {
+}
+class Measure {
+- String uri
+- String label
++ <<Create>> Measure(String,String)
++ String getUri()
++ void setUri(String)
++ String getLabel()
++ void setLabel(String)
+}
+
+
+enum GoalEnum {
++  PICK_GOAL
++  LOSE_WEIGHT
++  MAINTAIN_WEIGHT
++  GAIN_WEIGHT
++ String displayName
++ String getDisplayName()
++ String toString()
+}
+
+
+class CircleProgressBar {
+- Paint paint
+- RectF rectF
+- float progress
++ <<Create>> CircleProgressBar(Context,AttributeSet)
++ void onDraw(Canvas)
++ void setProgress(float)
+}
+
+
+class SingleNutrient {
+- String name
+- double amount
+- String unit
++ String getName()
++ void setName(String)
++ double getAmount()
++ void setAmount(double)
++ String getUnit()
++ void setUnit(String)
+}
+
+
+class Users {
+}
+class Meals {
+}
+class FoodApiResponse {
+- List<FoodItem> parsed
+- List<FoodItem> hints
++ <<Create>> FoodApiResponse(List<FoodItem>,List<FoodItem>)
++ List<FoodItem> getParsed()
++ void setParsed(List<FoodItem>)
++ List<FoodItem> getHints()
++ void setHints(List<FoodItem>)
++ String toString()
+}
+
+
+class Ingredient {
+- String name
+- String unit
+- double amount
++ String getName()
++ void setName(String)
++ String getUnit()
++ void setUnit(String)
++ double getAmount()
++ void setAmount(double)
++ String toString()
+}
+
+
+class RecipeResponse {
+- int id
+- String title
+- String image
+- int servings
+- int readyInMinutes
+- String summary
+- List<Ingredient> extendedIngredients
+- NutrientList nutrition
++ NutrientList getNutrient()
++ double getCalories()
++ double getProteins()
++ double getCarbs()
++ double getFats()
++ void setNutrient(NutrientList)
++ int getId()
++ void setId(int)
++ void setTitle(String)
++ void setImage(String)
++ void setServings(int)
++ void setReadyInMinutes(int)
++ void setSummary(String)
++ List<Ingredient> getExtendedIngredients()
++ void setExtendedIngredients(List<Ingredient>)
++ String getTitle()
++ String getImage()
++ int getServings()
++ int getReadyInMinutes()
++ String getSummary()
+}
+
+
+class FoodItem {
+- Food food
++ <<Create>> FoodItem(Food)
++ Food getFood()
++ void setFood(Food)
+}
+
+
+class BaseList {
+}
+class User {
+- String name
+- long birthDate
+- double height
+- double weight
+- int daysInApp
+- Foods history
+- String email
+- GoalEnum goal
+- GenderEnum gender
+- String password
+- ActivityLevel activityLevel
+- long lastDayLoggedIn
+- List<Integer> todaysMealsIds
+- List<String> allergies
+- DietEnum diet
+- String profilePictureId
+- double foodPlanCalories
+- double foodPlanProtein
+- double foodPlanCarbs
+- double foodPlanFats
++ <<Create>> User(String,String,String,long,double,double,GenderEnum,GoalEnum,ActivityLevel,long)
++ <<Create>> User()
++ double getFoodPlanCalories()
++ void setFoodPlanCalories(double)
++ double getFoodPlanProtein()
++ void setFoodPlanProtein(double)
++ double getFoodPlanCarbs()
++ void setFoodPlanCarbs(double)
++ double getFoodPlanFats()
++ void setFoodPlanFats(double)
++ String getProfilePictureId()
++ void setProfilePictureId(String)
++ List<String> getAllergies()
++ String getStringAllergies()
++ void setAllergies(List<String>)
++ DietEnum getDiet()
++ void setDiet(DietEnum)
++ List<Integer> getTodaysMealsIds()
++ void setTodaysMealsIds(List<Integer>)
++ long getLastDayLoggedIn()
++ void setLastDayLoggedIn(long)
++ ActivityLevel getActivityLevel()
++ void setActivityLevel(ActivityLevel)
++ String getName()
++ String getPassword()
++ void setPassword(String)
++ void setName(String)
++ long getBirthDate()
++ void setBirthDate(long)
++ double getHeight()
++ void setHeight(double)
++ double getWeight()
++ void setWeight(double)
++ int getDaysInApp()
++ void setDaysInApp(int)
++ Foods getHistory()
++ void setHistory(Foods)
++ String getEmail()
++ void setEmail(String)
++ GoalEnum getGoal()
++ void setGoal(GoalEnum)
++ GenderEnum getGender()
++ void setGender(GenderEnum)
++ void addFood(Food)
++ void addFoods(Foods)
++ void removeFood(Food)
++ double getConsumedCalories(long)
++ Foods getBreakfast(long)
++ Foods getLunch(long)
++ Foods getDinner(long)
++ int getRecommendedCalories()
++ Foods getDay(long)
++ boolean equals(Object)
+}
+
+
+class Food {
+- String category
+- String image
+- String label
+- Nutrients nutrients
+- List<Measure> measures
+- long date
+- MealEnum meal
+- LocalTime time
+- double serving
+- String userId
++ <<Create>> Food(String,String,long,MealEnum,double,String,Nutrients)
++ <<Create>> Food()
++ String getUserId()
++ void setUserId(String)
++ LocalTime getTime()
++ void setTime(LocalTime)
++ MealEnum getMeal()
++ void setMeal(MealEnum)
++ long getDate()
++ void setDate(long)
++ double getServing()
++ void setServing(double)
++ List<Measure> getMeasures()
++ void setMeasures(List<Measure>)
++ String getCategory()
++ void setCategory(String)
++ String getImage()
++ void setImage(String)
++ String getLabel()
++ void setLabel(String)
++ Nutrients getNutrients()
++ void setNutrients(Nutrients)
++ boolean equals(Object)
+}
+
+
+class NutrientList {
+- List<SingleNutrient> nutrients
++ List<SingleNutrient> getNutrients()
++ void setNutrients(List<SingleNutrient>)
+}
+
+
+interface RecipeService {
+}
+class Meal {
+- int id
+- String title
+- int readyInMinutes
+- int servings
+- String image
+- MealEnum mealEnum
+- String userId
+- boolean isTemp
+- double calories
+- double protein
+- double carbs
+- double fats
++ <<Create>> Meal(int,String,int,int,String,String,boolean)
++ <<Create>> Meal()
++ double getProtein()
++ void setProtein(double)
++ double getCarbs()
++ void setCarbs(double)
++ double getFats()
++ void setFats(double)
++ void setCalories(double)
++ double getCalories()
++ String getImage()
++ boolean isTemp()
++ void setTemp(boolean)
++ String getUserId()
++ void setUserId(String)
++ void setId(int)
++ void setTitle(String)
++ void setReadyInMinutes(int)
++ void setServings(int)
++ void setImage(String)
++ MealEnum getMealEnum()
++ void setMealEnum(MealEnum)
++ int getId()
++ String getTitle()
++ int getReadyInMinutes()
++ int getServings()
+}
+
+
+class Foods {
++ <<Create>> Foods()
+}
+
+enum ActivityLevel {
++  PICK_ACTIVITY_LEVEL
++  SEDENTARY
++  LIGHTLY_ACTIVE
++  MODERATELY_ACTIVE
++  VERY_ACTIVE
++  EXTREMELY_ACTIVE
+- double multiplier
++ double getMultiplier()
+}
+
+
+enum DietEnum {
++  REGULAR
++  VEGAN
++  PALEO
++  PRIMAL
++  KETOGENIC
++  WHOLE30
++  GLUTEN_FREE
++  VEGETARIAN
++  LACTO_VEGETARIAN
++  OVO_VEGETARIAN
++  PESCETARIAN
++  LOW_FODMAP
+- String name
+- String description
++ String getName()
++ String getDescription()
+}
+
+
+enum MealEnum {
++  BREAKFAST
++  LUNCH
++  DINNER
+- int value
++ int getValue()
++ {static} MealEnum getValue(int)
+}
+
+
+enum GenderEnum {
++  MALE
++  FEMALE
++ String value
+}
+
+
+
+Serializable <|.. MealPlanResponse
+Serializable <|.. Ingredients
+BaseList <|-- Ingredients
+Serializable <|.. Nutrients
+Serializable <|.. BaseEntity
+Serializable <|.. Measure
+View <|-- CircleProgressBar
+Serializable <|.. SingleNutrient
+Serializable <|.. Users
+BaseList <|-- Users
+Serializable <|.. Meals
+BaseList <|-- Meals
+Serializable <|.. FoodApiResponse
+Serializable <|.. Ingredient
+Serializable <|.. RecipeResponse
+BaseEntity <|-- RecipeResponse
+Serializable <|.. FoodItem
+ArrayList <|-- BaseList
+Serializable <|.. User
+BaseEntity <|-- User
+Serializable <|.. Food
+BaseEntity <|-- Food
+Serializable <|.. NutrientList
+Serializable <|.. Meal
+BaseEntity <|-- Meal
+Serializable <|.. Foods
+BaseList <|-- Foods
+@enduml

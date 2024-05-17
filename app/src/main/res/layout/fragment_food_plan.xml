@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#E5E8E5"
+    android:id="@+id/drawerLayout">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        android:id="@+id/scrollLayout"
+        tools:context=".Activities.FoodPlanFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Activities.FoodPlanFragment">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dinnerCardView"
+                android:layout_width="380dp"
+                android:layout_height="150dp"
+
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lunchCardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="#EBE3D5"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:id="@+id/dinnerMealImageView"
+                        android:layout_width="106dp"
+                        android:layout_height="148dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/baseline_search_24"
+                        android:background="@drawable/rounded_image_bg"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/dinnerMealTitleTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="6dp"
+                            android:hint="Food Name"
+                            android:inputType="text"
+                            android:text="Title: Pizza"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/dinnerMealReadyInMinutesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="6dp"
+                            android:hint="Ready in minutes"
+                            android:inputType="number"
+                            android:text="Ready in Minutes: 30"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/dinnerMealServingsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="6dp"
+                            android:hint="Servings"
+                            android:inputType="number"
+                            android:text="Servings: 4"
+                            android:textSize="20dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/dinnerMealCaloriesTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="6dp"
+                                android:inputType="numberDecimal"
+                                android:text="Calories:"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/dinnerMealCaloriesTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginVertical="6dp"
+                                android:layout_weight="1"
+                                android:hint="Calories"
+                                android:inputType="numberDecimal"
+                                android:text="400"
+                                android:textSize="20dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/breakfastCardView"
+                android:layout_width="380dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nutritionCard">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="#EBE3D5"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:id="@+id/breakfastMealImageView"
+                        android:layout_width="106dp"
+                        android:layout_height="148dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/baseline_search_24"
+                        android:background="@drawable/rounded_image_bg"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="260dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/breakfastMealTitleTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="6dp"
+                            android:layout_weight="1"
+                            android:hint="Food Name"
+                            android:inputType="text"
+                            android:text="Title: Pizza"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/breakfastMealReadyInMinutesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="6dp"
+                            android:layout_weight="1"
+                            android:hint="Ready in minutes"
+                            android:inputType="number"
+                            android:text="Ready in Minutes: 30"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/breakfastMealServingsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="6dp"
+                            android:layout_weight="1"
+                            android:hint="Servings"
+                            android:inputType="number"
+                            android:text="Servings: 4"
+                            android:textSize="20dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/breakfastMealCaloriesTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="6dp"
+                                android:inputType="numberDecimal"
+                                android:text="Calories:"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/breakfastMealCaloriesTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginVertical="6dp"
+                                android:layout_weight="1"
+                                android:hint="Calories"
+                                android:inputType="numberDecimal"
+                                android:text="400"
+                                android:textSize="20dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lunchCardView"
+                android:layout_width="380dp"
+                android:layout_height="150dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/breakfastCardView">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="#EBE3D5"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:id="@+id/lunchMealImageView"
+                        android:layout_width="106dp"
+                        android:layout_height="148dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/baseline_search_24"
+                        android:background="@drawable/rounded_image_bg"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lunchMealTitleTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="6dp"
+                            android:hint="Food Name"
+                            android:inputType="text"
+                            android:text="Title: Pizza"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/lunchMealReadyInMinutesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="6dp"
+                            android:hint="Ready in minutes"
+                            android:inputType="number"
+                            android:text="Ready in Minutes: 30"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/lunchMealServingsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="6dp"
+                            android:hint="Servings"
+                            android:inputType="number"
+                            android:text="Servings: 4"
+                            android:textSize="20dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/lunchMealCaloriesTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="6dp"
+                                android:inputType="numberDecimal"
+                                android:text="Calories:"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/lunchMealCaloriesTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginVertical="6dp"
+                                android:layout_weight="1"
+                                android:hint="Calories"
+                                android:inputType="numberDecimal"
+                                android:text="400"
+                                android:textSize="20dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Daily Plan"
+                android:textAlignment="center"
+                android:textSize="54sp"
+                android:fontFamily="@font/calistoga"
+                android:background="#E5E8E5"
+                android:textColor="#476930"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/settingImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="350dp"
+                android:src="@drawable/settings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/settings" />
+
+            <include
+                android:id="@+id/nutritionCard"
+                layout="@layout/nutrients_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#4F6F52"
+                android:fontFamily="@font/calistoga"
+                android:text="Re-Generate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dinnerCardView" />
+
+            <ImageButton
+                android:id="@+id/loadMealImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/star" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <!-- Drawer content -->
+    <LinearLayout
+        android:id="@+id/recipeFilter"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+
+        android:layout_marginEnd="111dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/sideBarTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:textAlignment="center"
+            android:theme="?attr/actionBarTheme"
+            app:title="Filter Search"
+            app:titleTextColor="@color/white" />
+
+        <TextView
+            android:id="@+id/itemsNotToIncludeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Don't include:"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/foodNameToRemove"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Food, Allergies etc..."
+                android:shadowRadius="5"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/addFoodNameToRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="24dp" />
+
+        <TextView
+            android:id="@+id/chooseDietTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="8dp"
+            android:text="Choose Diet:"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+
+            />
+
+        <Spinner
+            android:id="@+id/dietPlan"
+            android:layout_marginHorizontal="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            />
+
+
+        <TextView
+            android:id="@+id/dietDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description..."
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:textSize="18sp"
+            android:textAlignment="center"/>
+
+        <ImageView
+            android:id="@+id/resetPic"
+            android:layout_width="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="130dp"
+            app:srcCompat="@drawable/refresh_pic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancelBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
