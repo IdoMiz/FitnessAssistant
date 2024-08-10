@@ -197,6 +197,7 @@ public class User extends BaseEntity implements Serializable{
         this.daysInApp = daysInApp;
     }
 
+    // Getter and setter methods for food history, excluded from Firestore
     @Exclude
     public Foods getHistory() {
         return history;
@@ -230,7 +231,7 @@ public class User extends BaseEntity implements Serializable{
     public void setGender(GenderEnum gender) {
         this.gender = gender;
     }
-
+    // Method to add a food item to the history
     public void addFood(Food food) {
         boolean notFound = true;
 
@@ -259,6 +260,7 @@ public class User extends BaseEntity implements Serializable{
         }
         history.addAll(foods1);
     }
+    // Method to remove a food item from the history
 
     public void removeFood(Food food){
         if(history == null){
@@ -266,7 +268,7 @@ public class User extends BaseEntity implements Serializable{
         }
         history.remove(food);
     }
-
+    // Method to get consumed calories for a specific date
     public double getConsumedCalories(long date){
         Foods foods = getDay(date);
         double sum = 0;
@@ -280,45 +282,52 @@ public class User extends BaseEntity implements Serializable{
         return sum;
 
     }
-    public Foods getBreakfast(long date){
+
+    // Method to get breakfast foods for a specific date
+    public Foods getBreakfast(long date) {
         Foods temp = getDay(date);
         Foods breakfast = new Foods();
 
-        for (Food food: temp) {
-            if(food.getMeal() == MealEnum.BREAKFAST){
+        for (Food food : temp) {
+            if (food.getMeal() == MealEnum.BREAKFAST) {
                 breakfast.add(food);
             }
         }
         return breakfast;
     }
-    public Foods getLunch(long date){
+
+    // Method to get lunch foods for a specific date
+    public Foods getLunch(long date) {
         Foods temp = getDay(date);
         Foods lunch = new Foods();
 
-        for (Food food: temp) {
-            if(food.getMeal() == MealEnum.LUNCH){
+        for (Food food : temp) {
+            if (food.getMeal() == MealEnum.LUNCH) {
                 lunch.add(food);
             }
         }
         return lunch;
     }
-    public Foods getDinner(long date){
+
+    // Method to get dinner foods for a specific date
+    public Foods getDinner(long date) {
         Foods temp = getDay(date);
         Foods dinner = new Foods();
 
-        for (Food food: temp) {
-            if(food.getMeal() == MealEnum.DINNER){
+        for (Food food : temp) {
+            if (food.getMeal() == MealEnum.DINNER) {
                 dinner.add(food);
             }
         }
         return dinner;
     }
 
+    // Method to calculate recommended daily calories based on user details and goal
     public int getRecommendedCalories() {
-        if(activityLevel == null){
+        if (activityLevel == null) {
             return 0;
         }
-        double BMR =0;
+        double BMR = 0;
         int age = LocalDate.now().getYear() - DateUtil.longToLocalDate(this.birthDate).getYear();
 
         if (this.gender == GenderEnum.MALE) {
@@ -328,29 +337,28 @@ public class User extends BaseEntity implements Serializable{
         }
 
         double caloriesMultiplier = this.activityLevel.getMultiplier();
-        if(goal == GoalEnum.MAINTAIN_WEIGHT){
+        if (goal == GoalEnum.MAINTAIN_WEIGHT) {
             return (int) (BMR * caloriesMultiplier);
         } else if (goal == GoalEnum.GAIN_WEIGHT) {
-            return (int) (BMR * caloriesMultiplier*1.1);
-        }
-        else {
-            return (int) (BMR * caloriesMultiplier*0.9);
+            return (int) (BMR * caloriesMultiplier * 1.1);
+        } else {
+            return (int) (BMR * caloriesMultiplier * 0.9);
         }
     }
-    public Foods getDay(long date){
+
+    // Method to get all foods consumed on a specific date
+    public Foods getDay(long date) {
         Foods foods = new Foods();
-        if(history== null){
+        if (history == null) {
             return foods;
         }
-        for(Food food :history){
-            if(food != null && food.getDate() == date){
+        for (Food food : history) {
+            if (food != null && food.getDate() == date) {
                 foods.add(food);
             }
         }
         return foods;
     }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

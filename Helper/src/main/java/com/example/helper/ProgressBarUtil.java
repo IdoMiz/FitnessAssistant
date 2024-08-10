@@ -1,4 +1,4 @@
-package co.il.shivhit.helper;
+package com.example.helper;
 
 import android.content.Context;
 import android.widget.LinearLayout;

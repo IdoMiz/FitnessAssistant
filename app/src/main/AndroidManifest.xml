@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FitnessAssistant"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.ProgressBetweenDatesActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.DetailActivity"
             android:exported="false" />
         <activity
@@ -28,7 +31,8 @@
             android:exported="false" />
         <activity
             android:name=".Activities.ControlActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activities.BaseActivity"
             android:exported="false" /> <!-- <activity -->
@@ -39,9 +43,6 @@
         <!-- android:exported="false" /> -->
         <activity
             android:name=".Activities.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.example.junk.MainActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.SignInActivity"

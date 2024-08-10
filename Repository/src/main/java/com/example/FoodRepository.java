@@ -128,7 +128,6 @@ public class FoodRepository {
         return task.getTask();
     }
 
-
 //    public Task<Boolean> fixFoodIdfs() {
 //        TaskCompletionSource<Boolean> taskCompletion = new TaskCompletionSource<>();
 //
@@ -168,7 +167,6 @@ public class FoodRepository {
 //
 //        return taskCompletion.getTask();
 //    }
-
     public Task<Boolean> addAll(Foods foods, String userId) {
         TaskCompletionSource<Boolean> taskCompletion = new TaskCompletionSource<>();
 

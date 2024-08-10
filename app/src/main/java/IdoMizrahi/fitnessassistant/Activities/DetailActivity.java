@@ -1,8 +1,6 @@
 package IdoMizrahi.fitnessassistant.Activities;
 
 
-import static java.security.AccessController.getContext;
-
 import android.os.Bundle;
 
 import com.example.model.Ingredients;
@@ -10,22 +8,22 @@ import com.example.model.Meal;
 import com.example.model.RecipeResponse;
 import com.example.viewmodel.GenericViewModelFactory;
 import com.example.viewmodel.MealViewModel;
-import com.example.viewmodel.UserViewModel;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.squareup.picasso.Picasso;
 
 import IdoMizrahi.fitnessassistant.Adapters.IngredientAdapter;
 import IdoMizrahi.fitnessassistant.R;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
+import androidx.core.view.MenuProvider;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -97,54 +95,7 @@ public class DetailActivity extends BaseActivity {
                 finish();
             }
         });
-//        favImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(DetailActivity.this, "Favorite clicked!", Toast.LENGTH_SHORT).show();
-//                mealViewModel.getMeal(recipeResponse.getId());
-//                mealViewModel.getMealMutableLiveData().observe(DetailActivity.this, new Observer<Meal>() {
-//                    @Override
-//                    public void onChanged(Meal meal) {
-//                        mealViewModel.getMealMutableLiveData().removeObservers(DetailActivity.this); // Remove observer after it's triggered once
-//                        if(meal == null){
-//
-//                            // a place for errors so needs to be checked
-//                            // when selecting a food in a mealPlan it needs to assign the meal
-//                            Meal meal1 = new Meal(recipeResponse.getId(), recipeResponse.getTitle(), recipeResponse.getReadyInMinutes(), recipeResponse.getServings(), recipeResponse.getImage(), BaseActivity.getLoggedInUser().getIdFs(), false);
-//
-//                            mealViewModel.add(meal1);
-//                        }
-//                        else{
-//                            mealViewModel.delete(recipeResponse.getId());
-//                        }
-//                    }
-//                });
-//            }
-//        });
-
-//        favImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(DetailActivity.this, "Favorite clicked!", Toast.LENGTH_SHORT).show();
-//                // Remove any previous observers to prevent multiple observations
-//                mealViewModel.getMealMutableLiveData().removeObservers(DetailActivity.this);
-//
-//                mealViewModel.getMeal(recipeResponse.getId());
-//                mealViewModel.observeOnce(DetailActivity.this, new Observer<Meal>() {
-//                    @Override
-//                    public void onChanged(Meal meal) {
-//                        if (meal == null) {
-//                            // Meal doesn't exist, add it
-//                            Meal meal1 = new Meal(recipeResponse.getId(), recipeResponse.getTitle(), recipeResponse.getReadyInMinutes(), recipeResponse.getServings(), recipeResponse.getImage(), BaseActivity.getLoggedInUser().getIdFs(), false);
-//                            mealViewModel.add(meal1);
-//                        } else {
-//                            // Meal exists, delete it
-//                            mealViewModel.delete(recipeResponse.getId());
-//                        }
-//                    }
-//                });
-//            }
-//        });
+        // set a listener. if the meal doesn't exist in the database, add it to the database. otherwise, remove it from the database
         favImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,5 +137,10 @@ public class DetailActivity extends BaseActivity {
 
             Picasso.get().load(recipeResponse.getImage()).into(foodImage);
         }
+    }
+
+    @Override
+    public void addMenuProvider(@NonNull MenuProvider provider, @NonNull LifecycleOwner owner, @NonNull Lifecycle.State state) {
+
     }
 }

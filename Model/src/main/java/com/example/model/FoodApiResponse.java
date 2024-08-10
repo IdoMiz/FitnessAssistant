@@ -1,7 +1,5 @@
 package com.example.model;
 
-import com.example.model.FoodItem;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -30,8 +28,6 @@ public class FoodApiResponse implements Serializable {
         this.hints = hints;
     }
 
-
-    // Optional: toString() method for easy printing of response details
     @Override
     public String toString() {
         return "FoodSearchResponse{" +

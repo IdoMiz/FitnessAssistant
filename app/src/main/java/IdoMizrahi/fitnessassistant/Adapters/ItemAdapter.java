@@ -91,6 +91,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder>{
 
     public void setItems(List<String> items) {
         this.items = items;
+        notifyDataSetChanged();
     }
 
     public int getSingle_item_layout() {

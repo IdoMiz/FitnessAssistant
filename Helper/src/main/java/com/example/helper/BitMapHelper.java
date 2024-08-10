@@ -1,4 +1,4 @@
-package co.il.shivhit.helper;
+package com.example.helper;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

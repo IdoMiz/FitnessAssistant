@@ -32,10 +32,7 @@ public class ImageRepository {
     public Task<Boolean> add(Bitmap image, User user) {
         TaskCompletionSource<Boolean> taskCompletionSource = new TaskCompletionSource<>();
 
-        // Generate a random UUID for the image document ID
-
-
-        // Create a reference to store the image with the generated ID
+        // Create a reference to the updated image with the provided image ID
         StorageReference imageRef = storageRef.child(user.getIdFs() + ".jpg");
 
         // Convert bitmap to byte array
@@ -47,7 +44,6 @@ public class ImageRepository {
         imageRef.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // Save the generated ID of the uploaded image to the user object
                 taskCompletionSource.setResult(true);
             }
         }).addOnFailureListener(new OnFailureListener() {

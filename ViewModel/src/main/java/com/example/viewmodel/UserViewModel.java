@@ -47,7 +47,6 @@ public class UserViewModel extends ViewModel {
                 });
     }
 
-
     public void add(User user) {
         userRepository.add(user)
                 .addOnSuccessListener(aBoolean -> {

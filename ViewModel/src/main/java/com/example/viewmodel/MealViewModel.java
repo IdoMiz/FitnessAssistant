@@ -187,23 +187,4 @@ public class MealViewModel extends ViewModel {
         });
     }
 
-//    public void observeOnce(LifecycleOwner owner, final Observer<Meal> observer) {
-//        Observer<Meal> observerWrapper = new Observer<Meal>() {
-//            @Override
-//            public void onChanged(Meal meal) {
-//                // Remove observer after it's triggered once
-//                mealMutableLiveData.removeObserver(this);
-//                observer.onChanged(meal);
-//            }
-//        };
-//
-//        // Remove any previous observers to prevent multiple observations
-//        mealMutableLiveData.removeObservers(owner);
-//
-//        // Observe the LiveData only once
-//        mealMutableLiveData.observe(owner, observerWrapper);
-//    }
-
-
-
 }

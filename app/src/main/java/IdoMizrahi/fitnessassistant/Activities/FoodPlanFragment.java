@@ -1,36 +1,37 @@
 package IdoMizrahi.fitnessassistant.Activities;
 
-import android.annotation.SuppressLint;
+
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.WindowCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helper.DateUtil;
 import com.example.model.DietEnum;
@@ -52,9 +53,7 @@ import com.squareup.picasso.Transformation;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
-import IdoMizrahi.fitnessassistant.Adapters.FoodAdapter;
 import IdoMizrahi.fitnessassistant.Adapters.ItemAdapter;
 import IdoMizrahi.fitnessassistant.Adapters.MealAdapter;
 import IdoMizrahi.fitnessassistant.R;
@@ -95,6 +94,7 @@ public class FoodPlanFragment extends Fragment {
     private RecipeResponse recipeResponse;
     private boolean switchScreen;
     private DrawerLayout drawerLayout;
+    private LinearLayout linearLayout;
     private ImageView settingImage;
     private ImageView loadMealImageView;
 
@@ -171,6 +171,7 @@ public class FoodPlanFragment extends Fragment {
         saveBtn = view.findViewById(R.id.saveBtn);
         resetParameters = view.findViewById(R.id.resetPic);
         foodDescription = view.findViewById(R.id.dietDescription);
+        linearLayout = view.findViewById(R.id.recipeFilter);
 
         // nutrient card view
         caloriesValue = view.findViewById(R.id.caloriesValue);
@@ -217,6 +218,7 @@ public class FoodPlanFragment extends Fragment {
         itemsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
+
         if(user.getTodaysMealsIds() != null){
             if(user.getTodaysMealsIds().isEmpty()){
                 searchRecipes(user.getRecommendedCalories());
@@ -232,13 +234,14 @@ public class FoodPlanFragment extends Fragment {
         }
         setListeners();
     }
+    // The function gets a recipe from the api and displays it on the screen
     public void displayPlanData(RecipeResponse recipeResponse){
         caloriesValue.setText(String.valueOf((int) (recipeResponse.getCalories() + Double.parseDouble(String.valueOf(caloriesValue.getText())))));
         carbsValue.setText(String.valueOf((int) (recipeResponse.getCarbs() + Double.parseDouble(String.valueOf(carbsValue.getText())))));
         proteinValue.setText(String.valueOf((int) (recipeResponse.getProteins() + Double.parseDouble(String.valueOf(proteinValue.getText())))));
         fatValue.setText(String.valueOf((int) (recipeResponse.getFats() + Double.parseDouble(String.valueOf(fatValue.getText())))));
     }
-
+    // The function gets an item in the fillter screen and asks the user whether he wants to removes it from the list
     private void checkIfDelete(String item) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Confirmation");
@@ -265,7 +268,7 @@ public class FoodPlanFragment extends Fragment {
 
 
     }
-
+    // The function updates the nutrition values after changing the meal
     public boolean updateNutritionValuesAfterChangingMeals(Meals meals, String mealField){
         User user = BaseActivity.getLoggedInUser();
         if(meals != null) {
@@ -287,20 +290,27 @@ public class FoodPlanFragment extends Fragment {
     }
 
     private void setListeners() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideKeyboard(view);
+            }
+        });
+        // the function open a dialog with the option to replace a meal in the plan with another meal
         loadMealImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loadMealImageView.setClickable(false);
                 View dialogView = getLayoutInflater().inflate(R.layout.dialog_layout, null);
 
+                // initialize the recycler view
                 mealDialogRecyclerView = dialogView.findViewById(R.id.mealDialogRecyclerView);
                 mealDialogSpinner = dialogView.findViewById(R.id.mealDialogSpinner);
 
                 spinnerDialogAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, MealEnum.values());
                 spinnerDialogAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 mealDialogSpinner.setAdapter(spinnerDialogAdapter);
-//                mealDialogSpinner.setSelection(0);
-
+                // initialize the spinner
                 mealDialogSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -313,7 +323,6 @@ public class FoodPlanFragment extends Fragment {
                     }
                 });
 
-                //mealDialogSpinner.setSelection(BaseActivity.getLoggedInUser().getDiet().ordinal());
                 mealViewModel.getAll(BaseActivity.getLoggedInUser().getIdFs());
                 mealViewModel.getMealsMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Meals>() {
                     @Override
@@ -345,10 +354,10 @@ public class FoodPlanFragment extends Fragment {
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        // loading a meal to the right place in the plan
                         if(selectedMeal != null){
                             loadMealImageView.setClickable(true);
                             if(selectedMealType == MealEnum.BREAKFAST){
-                                //Todo: the adding is somehow working but the deleting isn't so it needs to be fixed and i need to find where im adding the item.
                                 User user = BaseActivity.getLoggedInUser();
                                 mealViewModel.getMealsMutableLiveData().removeObservers(getViewLifecycleOwner());
                                 mealViewModel.getTempoMeals(user.getIdFs());
@@ -445,6 +454,7 @@ public class FoodPlanFragment extends Fragment {
             }
         });
 
+        // the function regenerates the meal from the plan
         reGenerateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -611,10 +621,13 @@ public class FoodPlanFragment extends Fragment {
 
                 user.setAllergies(new ArrayList<>());
                 user.setDiet(DietEnum.REGULAR);
+                dietPlan.setSelection(0);
+                itemAdapter.setItems(new ArrayList<>());
 
-                userViewModel.update(user);
                 itemAdapter.notifyDataSetChanged();
                 spinnerAdapter.notifyDataSetChanged();
+                Toast.makeText(getContext(), "Parameters reset", Toast.LENGTH_SHORT).show();
+                userViewModel.update(user);
             }
         });
 
@@ -651,6 +664,7 @@ public class FoodPlanFragment extends Fragment {
 
             }
         });
+
     }
 
     private void loadMealToBreakfast(Meal selectedMeal) {
@@ -684,7 +698,7 @@ public class FoodPlanFragment extends Fragment {
         Picasso.get().load(selectedMeal.getImage()).transform(transformation).into(dinnerMealImageView);
 
     }
-
+    // The function gets the meal from the storage and loads it to the screen
     private void getSavedMealsFromStorage(){
         User user = BaseActivity.getLoggedInUser();
 
@@ -734,6 +748,7 @@ public class FoodPlanFragment extends Fragment {
             drawerLayout.openDrawer(getView().findViewById(R.id.recipeFilter)); // Replace sidebar_layout with the ID of your sidebar layout
         }
     }
+    // The function gets a recipe information from the api and if needed, goes to the detail screen
     private void getRecipeInformation(int recipeId, boolean includeNutrition, int counter, Meal meal) {
         Call<RecipeResponse> call = recipeService.getRecipeInformation(recipeId, Api_Key, includeNutrition);
         call.enqueue(new Callback<RecipeResponse>() {
@@ -778,6 +793,7 @@ public class FoodPlanFragment extends Fragment {
             }
         });
     }
+    // The function searches for a 3 meals in the api that fits the goal and return them for them to be displayed
     private void searchRecipes(int targetCalories) {
 
         User user = BaseActivity.getLoggedInUser();
@@ -817,6 +833,7 @@ public class FoodPlanFragment extends Fragment {
         });
     }
 
+    // Assign the meal to the right place on the screen
     private void setMealData(RecipeResponse recipeResponse, int mealType) {
         switch (mealType) {
             case 1:
@@ -859,4 +876,8 @@ public class FoodPlanFragment extends Fragment {
         Picasso.get().load(recipeResponse.getImage()).transform(transformation).into(dinnerMealImageView);
     }
 
+    private void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 }

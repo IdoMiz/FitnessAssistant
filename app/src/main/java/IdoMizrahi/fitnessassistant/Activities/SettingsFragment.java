@@ -48,7 +48,7 @@ import IdoMizrahi.fitnessassistant.R;
 public class SettingsFragment extends Fragment {
 
     private ImageView profilePicture;
-    private TextView userName, progress;
+    private TextView userName, progress, progress2;
     private Button logOutBtn;
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
@@ -72,6 +72,7 @@ public class SettingsFragment extends Fragment {
         profilePicture = view.findViewById(R.id.userImage);
         userName = view.findViewById(R.id.userNameTV);
         progress = view.findViewById(R.id.progressTV);
+        progress2 = view.findViewById(R.id.progressTV2);
         logOutBtn = view.findViewById(R.id.logOutBtn);
         editProfile = view.findViewById(R.id.editProfileTV);
         daysInAppTV = view.findViewById(R.id.daysInAppTV);
@@ -123,6 +124,13 @@ public class SettingsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        progress2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ProgressBetweenDatesActivity.class);
+                startActivity(intent);
+            }
+        });
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +147,7 @@ public class SettingsFragment extends Fragment {
             }
         });
     }
-
+    // Show options dialog to take a photo or upload one from the gallery
     private void showOptionsDialog() {
         final String[] options = {"Take a Picture", "Choose a Picture", "Cancel"};
         profilePicture.setClickable(true);
@@ -165,17 +173,17 @@ public class SettingsFragment extends Fragment {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
+    // Open the camera and take a picture
     private void takePicture() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
     }
-
+    // Open the gallery and select an image
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
-
+    // Handle the result of the camera or gallery activity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -217,6 +225,7 @@ public class SettingsFragment extends Fragment {
             }
         }
     }
+    // Clear user from shared preferences and finish the activity
     public void clearUserFromSharedPreferences(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -229,6 +238,7 @@ public class SettingsFragment extends Fragment {
         }
 
     }
+    // Set the profile picture to a circle shape
     private void setImageCircle() {
         profilePicture.setScaleType(ImageView.ScaleType.CENTER_CROP);
         profilePicture.setOutlineProvider(new ViewOutlineProvider() {

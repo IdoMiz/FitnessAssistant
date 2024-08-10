@@ -79,7 +79,7 @@ public class ProgressActivity extends BaseActivity {
                 finish();
             }
         });
-
+        // creates a dialog to pick a date
         dateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,7 +169,7 @@ public class ProgressActivity extends BaseActivity {
         LimitLine expectedLine = new LimitLine((float) expectedCalories, "Goal: "+ String.valueOf((int) expectedCalories));
         expectedLine.setLineWidth(2);
         expectedLine.enableDashedLine(10, 10, 0);
-        expectedLine.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+        expectedLine.setLabelPosition(LimitLine.LimitLabelPosition.LEFT_TOP);
         expectedLine.setTextSize(20);
 
         // Add limit lines to the left axis
@@ -199,7 +199,7 @@ public class ProgressActivity extends BaseActivity {
     }
 
 
-
+    // calculates the average calories for the last 7 days
     private double calculateAverageCalories(long selectedDate) {
         double sum =0;
 
@@ -210,7 +210,7 @@ public class ProgressActivity extends BaseActivity {
         return sum;
     }
 
-
+    // gets the values for the bar chart
     public void getValuesToBarEntry(long endingDate) {
         barEntryList.clear();
         for (int i = 6; i >= 0; i--) {
@@ -218,8 +218,4 @@ public class ProgressActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public void addMenuProvider(@NonNull MenuProvider provider, @NonNull LifecycleOwner owner, @NonNull Lifecycle.State state) {
-
-    }
 }

@@ -214,7 +214,6 @@ public class MealRepository {
         return taskCompletionSource.getTask();
     }
 
-
     public Task<Meal> getMealById(int id){
         TaskCompletionSource<Meal> task = new TaskCompletionSource<>();
 
@@ -238,8 +237,6 @@ public class MealRepository {
 
         return task.getTask();
     }
-
-
 
     public Task<Boolean> update(@NonNull Meal meal) {
         TaskCompletionSource<Boolean> taskCompletion = new TaskCompletionSource<>();

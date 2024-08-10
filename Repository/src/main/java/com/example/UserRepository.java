@@ -23,12 +23,9 @@ public class UserRepository {
     private FirebaseFirestore db;
     private CollectionReference collection;
 
-    private final MutableLiveData<Users> usersMutableLiveData;
-    private MutableLiveData<User> userMutableLiveData;
+
 
     public UserRepository(Context context){
-        usersMutableLiveData = new MutableLiveData<>();
-        userMutableLiveData = new MutableLiveData<>();
         try {
             db = FirebaseFirestore.getInstance();
         }
@@ -89,8 +86,6 @@ public class UserRepository {
         return completionSource.getTask();
     }
 
-
-
     public Task<Boolean> update(@NonNull User user) {
         TaskCompletionSource<Boolean> taskCompletion = new TaskCompletionSource<>();
 
@@ -137,6 +132,7 @@ public class UserRepository {
 
     public MutableLiveData<Users> getAll() {
         Users users = new Users();
+        MutableLiveData<Users> usersMutableLiveData = new MutableLiveData<>();
 
         collection.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

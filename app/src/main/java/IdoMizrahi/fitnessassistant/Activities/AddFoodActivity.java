@@ -9,6 +9,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.MenuProvider;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+
 import com.example.model.Food;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -137,5 +142,10 @@ public class AddFoodActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void addMenuProvider(@NonNull MenuProvider provider, @NonNull LifecycleOwner owner, @NonNull Lifecycle.State state) {
+
     }
 }

@@ -111,6 +111,7 @@ public class SignInActivity extends BaseActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+        // preform the logging
         logging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,6 +153,8 @@ public class SignInActivity extends BaseActivity {
                 }
                 else{
                     logging.setClickable(true);
+                    Toast.makeText(SignInActivity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -227,11 +230,12 @@ public class SignInActivity extends BaseActivity {
     }
 
     public void setRules(){
-        Validator.add(new EmailRule(email, RuleOperation.TEXT, "Invalid Email"));
-        Validator.add(new Rule(email,RuleOperation.REQUIRED,"Required"));
+        //Validator.add(new Rule(emailEditText,RuleOperation.REQUIRED,"Required"));
+        Validator.add(new EmailRule(email, RuleOperation.TEXT, "Email must be in this format *@*.com"));
 
+        //Validator.add(new Rule(passwordEditText, RuleOperation.REQUIRED,"Required"));
         Validator.add(new PasswordRule(password, RuleOperation.PASSWORD, "Invalid Password", 5, 18));
-        Validator.add(new Rule(password, RuleOperation.REQUIRED,"Required"));
+
     }
 
     public boolean validate(){
@@ -269,4 +273,9 @@ public class SignInActivity extends BaseActivity {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+
+    @Override
+    public void addMenuProvider(@NonNull MenuProvider provider, @NonNull LifecycleOwner owner, @NonNull Lifecycle.State state) {
+
+    }
 }

@@ -1,5 +1,6 @@
 package IdoMizrahi.fitnessassistant.Activities;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -69,6 +70,7 @@ public class SignUpActivity extends BaseActivity{
     private boolean isNew;
     private ImageView backArrow;
     private ConstraintLayout mainLayout;
+    private static final int REQUEST_CODE = 1;
 
 
     @Override
@@ -173,6 +175,7 @@ public class SignUpActivity extends BaseActivity{
                     constraint = DateUtil.buidCalendarConstrains(LocalDate.now().minusYears(120), LocalDate.now());
                 }
                 builder.setCalendarConstraints(constraint);
+
                 if (!textViewBirthDate.getText().toString().isEmpty())
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         Validator.cleanValidators();
@@ -256,23 +259,24 @@ public class SignUpActivity extends BaseActivity{
 
     private void setRules() {
         Validator.cleanValidators();
-        Validator.add(new Rule(firstNameEditText,RuleOperation.REQUIRED,"Required"));
-        Validator.add(new NameRule(firstNameEditText, RuleOperation.NAME, "Invalid Name"));
 
-        Validator.add(new Rule(emailEditText,RuleOperation.REQUIRED,"Required"));
-        Validator.add(new EmailRule(emailEditText, RuleOperation.REQUIRED, "Invalid Email"));
+        //Validator.add(new Rule(firstNameEditText,RuleOperation.REQUIRED,"Required"));
+        Validator.add(new NameRule(firstNameEditText, RuleOperation.NAME, "Name must start with a capital letter"));
 
-        Validator.add(new Rule(passwordEditText, RuleOperation.REQUIRED,"Required"));
-        Validator.add(new PasswordRule(passwordEditText, RuleOperation.PASSWORD, "Invalid Password", 5, 18));
+        //Validator.add(new Rule(emailEditText,RuleOperation.REQUIRED,"Required"));
+        Validator.add(new EmailRule(emailEditText, RuleOperation.TEXT, "Email must be in this format *@*.com"));
 
-        Validator.add(new Rule(textViewBirthDate, RuleOperation.REQUIRED, "Required"));
+        //Validator.add(new Rule(passwordEditText, RuleOperation.REQUIRED,"Required"));
+        Validator.add(new PasswordRule(passwordEditText, RuleOperation.PASSWORD, "Password must be between 5-18 letters and contain a capital letter, a lowercase letter, a number and a special character", 5, 18));
+
+        //Validator.add(new Rule(textViewBirthDate, RuleOperation.REQUIRED, "Required"));
         Validator.add(new DateRule(textViewBirthDate, RuleOperation.DATE, "Invalid Date", LocalDate.now().minusYears(120), LocalDate.now()));
 
-        Validator.add(new Rule(heightEditText,RuleOperation.REQUIRED,"Required"));
-        Validator.add(new NumberRule(heightEditText, RuleOperation.REQUIRED, "Invalid Height", 50, 300));
+        //Validator.add(new Rule(heightEditText,RuleOperation.REQUIRED,"Required"));
+        Validator.add(new NumberRule(heightEditText, RuleOperation.NUMBER, "Height must be between 50-300 Cm", 50, 300));
 
-        Validator.add(new Rule(weightEditText,RuleOperation.REQUIRED,"Required"));
-        Validator.add(new NumberRule(weightEditText, RuleOperation.REQUIRED, "Invalid Weight", 2, 300));
+        //Validator.add(new Rule(weightEditText,RuleOperation.REQUIRED,"Required"));
+        Validator.add(new NumberRule(weightEditText, RuleOperation.NUMBER, "Weight must be between 2-300 Kg", 2, 300));
 
         Validator.add(new Rule(radioGroupGender, RuleOperation.REQUIRED, "Required"));
 
@@ -286,6 +290,7 @@ public class SignUpActivity extends BaseActivity{
         return Validator.validate();
     }
 
+    // preform the sign up of a new user
     private void signUp() {
         if (validateInputs()) {
 
@@ -329,11 +334,12 @@ public class SignUpActivity extends BaseActivity{
                 User user = new User(firstName, email, password, birthDate, height, weight, gender, goal, activityLevel, DateUtil.localDateToLong(LocalDate.now()));
                 userViewModel.add(user);
                 BaseActivity.setLoggedInUser(user);
+                BaseActivity.setCurrentDate(DateUtil.localDateToLong(LocalDate.now()));
 
                 Toast.makeText(SignUpActivity.this, "User signed up successfully!", Toast.LENGTH_SHORT).show();
                 signUpButton.setClickable(true);
                 Intent intent = new Intent(SignUpActivity.this, ControlActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         } else {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
@@ -345,5 +351,31 @@ public class SignUpActivity extends BaseActivity{
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        // Check if the result is from the other activity
+        if (requestCode == REQUEST_CODE) {
+            firstNameEditText.setText("");
+            emailEditText.setText("");
+            passwordEditText.setText("");
+            textViewBirthDate.setText("");
+            heightEditText.setText("");
+            weightEditText.setText("");
+            radioGroupGender.clearCheck();
+            spinnerGoal.setSelection(0);
+            spinnerActivityLevel.setSelection(0);
+            isNew = true;
+            title.setText("Create an account");
+            signUpButton.setText("Sign Up");
+
+            Validator.cleanValidators();
+            setRules();
+        }
+    }
+    @Override
+    public void addMenuProvider(@NonNull MenuProvider provider, @NonNull LifecycleOwner owner, @NonNull Lifecycle.State state) {
+
+    }
 }

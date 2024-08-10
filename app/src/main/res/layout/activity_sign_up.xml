@@ -55,7 +55,7 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +78,7 @@
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +102,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +125,7 @@
                 android:inputType="numberDecimal"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +148,7 @@
                 android:inputType="numberDecimal"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,11 +168,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/esteban"
-                android:hint="Birth Date (YYYY/MM/DD)"
+                android:hint="Birth Date (DD/MM/YYYY)"
                 android:inputType="date"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textInputLayoutWeight" />
@@ -197,7 +197,7 @@
                 android:text="Male"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/radioButtonFemale"
@@ -207,7 +207,7 @@
                 android:text="Female"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </RadioGroup>
 
@@ -221,7 +221,7 @@
             android:hint="Goal"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/radioGroupGender" />
@@ -236,7 +236,7 @@
             android:hint="Activity Level"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spinnerGoal" />
@@ -250,7 +250,7 @@
             android:backgroundTint="#4F6F52"
             android:fontFamily="@font/calistoga"
             android:text="Create"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spinnerActivityLevel" />

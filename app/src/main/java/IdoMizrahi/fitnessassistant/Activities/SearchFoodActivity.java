@@ -18,8 +18,12 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.MenuProvider;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -155,7 +159,7 @@ public class SearchFoodActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
-
+    // the function gets a name and performs a search for foods with that name
     private void performSearch(String desiredFoodName) {
         Call<FoodApiResponse> call = apiService.searchFoods(desiredFoodName, APP_ID, apiKey);
 
@@ -187,6 +191,7 @@ public class SearchFoodActivity extends BaseActivity {
             }
         });
     }
+    // Sets the search view listener
     public void setSearchView(){
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -233,9 +238,16 @@ public class SearchFoodActivity extends BaseActivity {
             }
         }
     }
-
+    // Function to hide the keyboard
     private void hideKeyboard(View view) {
+
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+    }
+
+    @Override
+    public void addMenuProvider(@NonNull MenuProvider provider, @NonNull LifecycleOwner owner, @NonNull Lifecycle.State state) {
+
     }
 }

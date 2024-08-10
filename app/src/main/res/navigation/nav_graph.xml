@@ -18,6 +18,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="IdoMizrahi.fitnessassistant.Activities.SettingsFragment"
+        tools:layout="@layout/fragment_settings"
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/foodPlanFragment"
